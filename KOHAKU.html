@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOHARU COFFEE ROASTERS | 表参道の隠れ家カフェ</title>
+    <meta name="description" content="表参道の喧騒を離れた、大人のための隠れ家カフェ。自家焙煎のスペシャルティコーヒーと、静謐な空間で、特別なひとときを。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        theme: {
+                            base: '#0B1120',    /* Deep Midnight Navy */
+                            surface: '#151E32', /* Slightly Lighter Navy */
+                            text: '#E2E8F0',    /* Off-white */
+                            accent: '#FFB300',  /* 琥珀色ゴールド */
+                            muted: '#94A3B8'    /* Muted Blue-Grey */
+                        }
+                    },
+                    fontFamily: {
+                        'serif-en': ['"Playfair Display"', 'serif'],
+                        /* 日本語フォントをメイリオに指定 */
+                        'meiryo': ['"Meiryo"', '"Hiragino Kaku Gothic ProN"', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        /* （トップ画面）背景画像 C:\KOHAKU\image_0.png */
+                        'hero-pattern': "linear-gradient(to bottom, rgba(11, 17, 32, 0.7), rgba(11, 17, 32, 0.9)), url('KOHAKU_image_0.png')"
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'fade-in': 'fadeIn 1.0s ease-out forwards',
+                        /* 点滅（パルス）アニメーションはTailwind標準の animate-pulse を使用 */
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow-sm { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+        }
+        .js-scroll-trigger { @apply opacity-0 translate-y-5 transition-all duration-1000 ease-out; }
+        .js-scroll-trigger.is-active { @apply opacity-100 translate-y-0; }
+    </style>
+</head>
+<body class="bg-theme-base text-theme-text font-meiryo leading-relaxed overflow-x-hidden">
+
+    <header class="fixed w-full top-0 z-50 bg-theme-base/90 backdrop-blur-sm border-b border-theme-surface/50 transition-all duration-300" id="header">
+        <div class="container mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 font-serif-en text-2xl md:text-3xl font-bold tracking-wider text-theme-accent">
+                <img src="KOHAKU_image_2.png" alt="KOHARU COFFEE ロゴ" class="w-8 h-8 md:w-10 md:h-10 object-contain">
+                KOHARU COFFEE
+            </a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8 text-sm tracking-widest font-serif-en">
+                    <li><a href="#concept" class="hover:text-theme-accent transition-colors duration-300 relative group">CONCEPT<span class="absolute -bottom-1 left-0 w-0 h-px bg-theme-accent transition-all group-hover:w-full"></span></a></li>
+                    <li><a href="#gallery" class="hover:text-theme-accent transition-colors duration-300 relative group">GALLERY<span class="absolute -bottom-1 left-0 w-0 h-px bg-theme-accent transition-all group-hover:w-full"></span></a></li>
+                    <li><a href="#menu" class="hover:text-theme-accent transition-colors duration-300 relative group">MENU<span class="absolute -bottom-1 left-0 w-0 h-px bg-theme-accent transition-all group-hover:w-full"></span></a></li>
+                    <li><a href="#access" class="hover:text-theme-accent transition-colors duration-300 relative group">ACCESS<span class="absolute -bottom-1 left-0 w-0 h-px bg-theme-accent transition-all group-hover:w-full"></span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="relative h-screen bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/30"></div>
+        <div class="text-center z-10 px-6 animate-fade-in-up">
+            <p class="text-theme-accent font-serif-en tracking-[0.2em] mb-4 text-sm md:text-base uppercase animate-pulse">Freshly Roasted in Omotesando</p>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-meiryo text-shadow-sm">
+                心ほどける、<br class="md:hidden">琥珀色のひとときを。
+            </h1>
+            <p class="text-theme-text text-lg md:text-xl max-w-2xl mx-auto font-light mb-10 text-shadow-sm">
+                自家焙煎の豊かな香りと、深みのある味わい。<br>
+                日常を忘れさせる温かな空間で、あなただけの一杯をお淹れします。
+            </p>
+            <div class="w-12 h-0.5 bg-theme-accent mx-auto mb-10"></div>
+        </div>
+    </section>
+
+    <section id="concept" class="py-24 md:py-32 bg-theme-base relative overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center gap-16 lg:gap-24">
+                <div class="w-full md:w-1/2 js-scroll-trigger">
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-sm shadow-xl group">
+                        <img src="KOHAKU_image_1.png" alt="焙煎の熱気と琥珀色の輝き" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 js-scroll-trigger" style="transition-delay: 0.2s;">
+                    <h2 class="text-3xl md:text-4xl font-bold font-meiryo text-theme-accent mb-8">
+                        一杯の珈琲に、物語を。
+                    </h2>
+                    <div class="space-y-6 text-theme-muted leading-loose font-light">
+                        <p>表参道の裏路地にひっそりと佇む「KOHARU COFFEE ROASTERS」。扉を開けると、そこは都会の喧騒とは無縁の静かな空間が広がります。</p>
+                        <p>私たちが大切にしているのは、豆本来の個性を引き出すこと。店内の焙煎機で丁寧にローストし、最高の香りと甘みを追求しています。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-24 md:py-32 bg-theme-surface relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 js-scroll-trigger">
+                <h2 class="text-3xl md:text-4xl font-bold font-serif-en text-theme-accent tracking-wider mb-4">GALLERY</h2>
+                <p class="text-theme-muted font-meiryo">静謐な空間と、美しい瞬間</p>
+                <div class="w-8 h-px bg-theme-accent mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                <div class="aspect-[3/4] relative overflow-hidden rounded-sm shadow-md group js-scroll-trigger">
+                    <img src="KOHAKU_image_3.png" alt="落ち着いた客席の全景" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="aspect-[3/4] relative overflow-hidden rounded-sm shadow-md group js-scroll-trigger" style="transition-delay: 0.2s;">
+                    <img src="KOHAKU_image_4.png" alt="窓辺の席の温かい風景" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                 <div class="aspect-[3/4] relative overflow-hidden rounded-sm shadow-md group js-scroll-trigger" style="transition-delay: 0.3s;">
+                    <img src="KOHAKU_image_6.png" alt="ハンドドリップの様子" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 md:py-32 bg-theme-base relative overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-20 js-scroll-trigger">
+                <h2 class="text-3xl md:text-4xl font-bold font-serif-en text-theme-accent tracking-wider mb-4">MENU</h2>
+                <p class="text-theme-muted font-meiryo">至高の逸品</p>
+                 <div class="w-8 h-px bg-theme-accent mx-auto mt-6"></div>
+            </div>
+
+            <div class="space-y-24">
+                <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16 js-scroll-trigger">
+                    <div class="w-full md:w-1/2">
+                         <div class="aspect-video relative overflow-hidden rounded-sm shadow-xl group">
+                            <img src="KOHAKU_image_5.png" alt="美しいクレマのエスプレッソ" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-theme-accent mb-2 font-meiryo">KOHARU ブレンド</h3>
+                        <p class="font-serif-en text-lg text-theme-muted mb-6">Hand Drip Coffee / ¥850</p>
+                        <p class="text-theme-muted leading-relaxed font-light">
+                            深煎り特有の芳醇な香りと、ビターチョコレートのような濃厚なコク。後味に感じるほのかな甘みが特徴の、当店を代表するブレンドです。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16 js-scroll-trigger" style="transition-delay: 0.2s;">
+                     <div class="w-full md:w-1/2">
+                        <div class="aspect-video relative overflow-hidden rounded-sm shadow-xl group">
+                             <img src="KOHAKU_image_7.png" alt="キャラメルタルト" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left">
+                        <h3 class="text-2xl font-bold text-theme-accent mb-2 font-meiryo">キャラメルタルト</h3>
+                        <p class="font-serif-en text-lg text-theme-muted mb-6">Seasonal Tart / ¥700~</p>
+                        <p class="text-theme-muted leading-relaxed font-light">
+                            キャラメルクリームを使用したパティシエ特製のタルト。ほろ苦いキャラメルの風味と、ローストしたクルミの香ばしい食感が、深煎りコーヒーのコクと絶妙なハーモニーを奏でます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="access" class="py-24 bg-theme-surface relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 js-scroll-trigger">
+                <h2 class="text-3xl font-bold font-serif-en text-theme-accent tracking-wider mb-4">ACCESS</h2>
+                <p class="text-theme-muted font-meiryo">KOHARU COFFEE ROASTERS</p>
+                <div class="w-8 h-px bg-theme-accent mx-auto mt-6"></div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-16 js-scroll-trigger">
+                <div class="w-full lg:w-2/5">
+                    <div class="space-y-8 text-theme-text font-light">
+                        <div>
+                             <h4 class="font-serif-en text-theme-accent text-sm tracking-widest mb-2">ADDRESS</h4>
+                             <p>〒107-0062<br>東京都港区南青山X-X-X<br>KOHARUビル B1F</p>
+                        </div>
+                        <div>
+                             <h4 class="font-serif-en text-theme-accent text-sm tracking-widest mb-2">HOURS</h4>
+                             <p>11:00 - 22:00 (L.O. 21:30)<br><span class="text-theme-muted text-sm">※定休日：火曜日</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-3/5 h-80 lg:h-auto min-h-[400px] bg-theme-base/50 relative rounded-sm overflow-hidden border border-theme-surface shadow-inner grayscale hover:grayscale-0 transition-all duration-1000">
+                    <iframe src="https://maps.google.com/maps?q=Omotesando&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-theme-base text-center text-theme-muted/60 text-xs font-serif-en tracking-wider border-t border-theme-surface/30">
+        <div class="container mx-auto px-6">
+            <p>© 2024 KOHARU COFFEE ROASTERS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Trigger Animation
+        const triggerElements = document.querySelectorAll('.js-scroll-trigger');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-active');
+                }
+            });
+        }, { threshold: 0.1 });
+        triggerElements.forEach(element => observer.observe(element));
+    </script>
+    <a href="index.html#/work/lp"" class="fixed bottom-6 right-6 z-50 bg-[#151E32] text-[#FFB300] border border-[#FFB300]/30 px-6 py-3 rounded-full shadow-lg hover:bg-[#FFB300] hover:text-[#0B1120] transition-all duration-300 flex items-center group">
+        <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span class="text-sm font-bold tracking-wider">ポートフォリオに戻る</span>
+    </a>
+    </body>
+</html>

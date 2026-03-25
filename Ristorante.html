@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Restaurant | 都会の喧騒を忘れる隠れ家イタリアン</title>
+    <!-- Tailwind CSS (CDN for prototyping) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0A2540', /* Deep Blue */
+                        secondary: '#82B1FF', /* Sky Blue */
+                        accent: '#E0E7FF', /* Light Accent */
+                        background: '#FAFAFA', /* Clean White */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.primary');
+            overflow-x: hidden;
+        }
+
+        /* Custom Utilities */
+        #header {
+            /* 追加：最初から透明な1pxの線を引いておくことでフラッシュを防ぐ */
+            border-bottom: 1px solid transparent; 
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            /* 変更：線の太さではなく「色」だけを変えるようにする */
+            border-bottom-color: rgba(255, 255, 255, 0.3); 
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .bento-item img {
+            transition: transform 0.5s ease;
+        }
+
+        .bento-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Hide elements before GSAP animation */
+        .gsap-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-gray-800">
+
+    <!-- Header (Fixed & Glassmorphism) -->
+    <header id="header" class="fixed w-full z-50 transition-all duration-300 py-6" style="background: transparent;">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <h1 class="font-serif text-3xl font-semibold tracking-widest text-white transition-colors duration-300"
+                id="logo">
+                Ristorante Azzurro
+            </h1>
+            <nav class="hidden md:flex space-x-8 text-white font-medium tracking-wide transition-colors duration-300"
+                id="nav-links">
+                <a href="#story" class="hover:text-secondary transition">Story</a>
+                <a href="#menu" class="hover:text-secondary transition">Menu</a>
+                <a href="#wine" class="hover:text-secondary transition">Wine</a>
+                <a href="#gallery" class="hover:text-secondary transition">Gallery</a>
+            </nav>
+            <a href="#reservation"
+                class="hidden md:inline-block border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-primary transition-all duration-300"
+                id="reserve-btn">
+                予約する
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section (First View) -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Parallax Background -->
+        <div id="hero-bg" class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop"
+                alt="Italian Restaurant Interior" class="w-full h-full object-cover origin-center">
+            <div class="absolute inset-0 bg-primary/40"></div> <!-- Dark Overlay for readability -->
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4">
+            <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 tracking-wider opacity-0"
+                id="hero-title">
+                Delight in Every Bite.
+            </h2>
+            <p class="text-white text-lg md:text-2xl font-light tracking-widest opacity-0" id="hero-subtitle">
+                都会の喧騒を忘れさせる、大人のための隠れ家空間。
+            </p>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0"
+            id="hero-scroll">
+            <span class="text-white text-xs tracking-widest mb-2">SCROLL</span>
+            <div class="w-[1px] h-16 bg-white/50 relative overflow-hidden">
+                <div class="w-full h-full bg-white absolute top-0 left-0 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" class="py-24 bg-white relative">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <p class="text-secondary font-serif text-xl italic mb-4 gsap-reveal">Our Philosophy</p>
+            <h3 class="text-3xl md:text-5xl font-serif text-primary mb-12 leading-tight gsap-reveal">
+                伝統と革新が交差する、<br>新しいイタリアンの形。
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-lg gsap-reveal mb-8">
+                私たちが大切にしているのは、素材そのものが持つ力強い味わいと、<br class="hidden md:block">
+                都会の喧騒から離れた、落ち着きのある大人の隠れ家空間です。<br><br>
+                厳選された旬の食材を使い、クラシックな技法に現代のエッセンスを加えた一皿。<br class="hidden md:block">
+                シックで洗練された店内で、<br class="hidden md:block">
+                心躍る特別な時間をお過ごしください。
+            </p>
+        </div>
+    </section>
+
+    <!-- Course Preview Section (Bento Grid Style) -->
+    <section id="menu" class="py-24 bg-background">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 gsap-reveal">
+                <p class="text-secondary font-serif text-xl italic mb-2">Course Menu</p>
+                <h2 class="text-4xl font-serif text-primary">Tasting Menu</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-6xl mx-auto">
+
+                <!-- Amuse (Col 8) -->
+                <div class="bento-item md:col-span-8 h-80 bg-white shadow-sm gsap-reveal group">
+                    <img src="images/1.季節のアンティパスト・ミスト.png"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        alt="Amuse">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <span class="text-secondary text-sm font-bold tracking-wider mb-2 block">1st / Amuse</span>
+                        <h4 class="font-serif text-3xl mb-2">季節のアンティパスト・ミスト</h4>
+                        <p class="text-sm opacity-90">シチリア産オリーブと新鮮な魚介のマリネ</p>
+                    </div>
+                </div>
+
+                <!-- Wine Pairing (Col 4) -->
+                <div
+                    class="bento-item md:col-span-4 h-80 bg-primary p-8 flex flex-col justify-center gsap-reveal text-white">
+                    <div class="mb-4 text-secondary">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-serif text-2xl mb-3">Wine Pairing</h4>
+                    <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                        ソムリエが料理一品一品に合わせて厳選したグラスワインをご提案します。<br>
+                        ペアリングでしか味わえないマリアージュをお楽しみください。
+                    </p>
+                    <a href="#wine" class="text-secondary text-sm font-medium hover:underline inline-flex items-center">
+                        ワインリストを見る
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Video Placeholder (Col 12) -->
+                <div
+                    class="bento-item md:col-span-12 h-96 bg-gray-900 gsap-reveal relative overflow-hidden flex items-center justify-center group">
+                    <!-- Temporary Video Placeholder Image -->
+                    <img src="images/2.自家製手打ちパスタ「タリオリーニ」.png"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                        alt="Making Pasta">
+
+                    <div class="relative z-10 text-center">
+                        <div
+                            class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-white/30 transition">
+                            <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8 5v10l8-5-8-5z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-secondary text-sm font-bold tracking-wider mb-2 block">2nd / Pasta</span>
+                        <h4 class="font-serif text-4xl text-white">自家製手打ちパスタ「タリオリーニ」</h4>
+                    </div>
+                </div>
+
+                <!-- Main (Col 6) -->
+                <div class="bento-item md:col-span-6 h-80 bg-white shadow-sm gsap-reveal group">
+                    <img src="images/3.黒毛和牛のビステッカ .png"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        alt="Main Course">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <span class="text-secondary text-sm font-bold tracking-wider mb-2 block">3rd / Main</span>
+                        <h4 class="font-serif text-3xl mb-2">黒毛和牛のビステッカ</h4>
+                        <p class="text-sm opacity-90">赤ワインソースと季節のロースト野菜</p>
+                    </div>
+                </div>
+
+                <!-- Dessert (Col 6) -->
+                <div class="bento-item md:col-span-6 h-80 bg-white shadow-sm gsap-reveal group">
+                    <img src="images/4.特製ティラミス・クラシコ.png"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        alt="Dessert">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <span class="text-secondary text-sm font-bold tracking-wider mb-2 block">4th / Dessert</span>
+                        <h4 class="font-serif text-3xl mb-2">特製ティラミス・クラシコ</h4>
+                        <p class="text-sm opacity-90">エスプレッソの香りとマスカルポーネの調和</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- A La Carte Menu (Bento Grid) -->
+    <section id="alacarte" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 gsap-reveal">
+                <p class="text-secondary font-serif text-xl italic mb-2">A La Carte</p>
+                <h2 class="text-4xl font-serif text-primary">アラカルトメニュー</h2>
+                <p class="mt-4 text-gray-600">お好みに合わせて選べる、多彩なメニューをご用意。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto gsap-reveal">
+                <!-- item 1 -->
+                <div class="bento-item h-64 group bg-gray-100 relative">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1968&auto=format&fit=crop"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                        alt="Salad">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-white/90 backdrop-blur pb-4 pt-6 px-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-serif text-xl text-primary font-bold">Insalata</h4>
+                        <p class="text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                            彩り豊かな旬野菜のガーデンサラダ</p>
+                    </div>
+                </div>
+                <!-- item 2 -->
+                <div class="bento-item h-64 group bg-gray-100 relative">
+                    <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?q=80&w=2070&auto=format&fit=crop"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                        alt="Meat">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-white/90 backdrop-blur pb-4 pt-6 px-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-serif text-xl text-primary font-bold">Secondi Piatti (Meat)</h4>
+                        <p class="text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                            炭火でじっくり焼き上げる香ばしい肉料理</p>
+                    </div>
+                </div>
+                <!-- item 3 -->
+                <div class="bento-item h-64 group bg-gray-100 relative">
+                    <img src="images/5.本場のパスタ.png"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                        alt="Pasta">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-white/90 backdrop-blur pb-4 pt-6 px-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-serif text-xl text-primary font-bold">Pasta</h4>
+                        <p class="text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                            本場イタリアンパスタ</p>
+                    </div>
+                </div>
+                <!-- item 4 -->
+                <div class="bento-item h-64 group bg-gray-100 relative">
+                    <img src="images/6.石窯で焼くナポリピッツァ.png"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                        alt="Pizza">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-white/90 backdrop-blur pb-4 pt-6 px-6 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-serif text-xl text-primary font-bold">Pizza</h4>
+                        <p class="text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                            石窯で焼くナポリピッツァ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine List Section -->
+    <section id="wine" class="py-24 bg-primary text-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-16 gsap-reveal">
+                <p class="text-secondary font-serif text-xl italic mb-2">Wine List</p>
+                <h2 class="text-4xl font-serif text-white">厳選されたイタリアワイン</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="gsap-reveal border-l-2 border-secondary pl-6">
+                    <h3 class="text-2xl font-serif text-secondary mb-4">Sparkling & White</h3>
+                    <p class="text-gray-300 font-light mb-6">
+                        爽やかな泡立ちのフランチャコルタから、北イタリアのミネラル感豊かな白ワインまで。<br>
+                        前菜や魚介の旨味を引き立てるラインナップ。
+                    </p>
+                    <ul class="space-y-3 font-light">
+                        <li class="flex justify-between border-b border-white/20 pb-2"><span>Franciacorta Cuvée
+                                Prestige</span><span>¥1,500 / Glass</span></li>
+                        <li class="flex justify-between border-b border-white/20 pb-2"><span>Soave
+                                Classico</span><span>¥1,200 / Glass</span></li>
+                        <li class="flex justify-between border-b border-white/20 pb-2"><span>Vermentino di
+                                Sardegna</span><span>¥1,400 / Glass</span></li>
+                    </ul>
+                </div>
+                <div class="gsap-reveal border-l-2 border-secondary pl-6">
+                    <h3 class="text-2xl font-serif text-secondary mb-4">Red & Dessert</h3>
+                    <p class="text-gray-300 font-light mb-6">
+                        トスカーナの芳醇な赤ワイン、ピエモンテのエレガントなバローロ。<br>
+                        お肉料理にあわせる至極の一杯と、食後の甘美なグラッパ。
+                    </p>
+                    <ul class="space-y-3 font-light">
+                        <li class="flex justify-between border-b border-white/20 pb-2"><span>Chianti Classico
+                                Riserva</span><span>¥1,600 / Glass</span></li>
+                        <li class="flex justify-between border-b border-white/20 pb-2"><span>Barolo
+                                DOCG</span><span>¥2,200 / Glass</span></li>
+                        <li class="flex justify-between border-b border-white/20 pb-2"><span>Grappa di
+                                Brunello</span><span>¥1,300 / Glass</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 bg-background">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 gsap-reveal">
+                <p class="text-secondary font-serif text-xl italic mb-2">Atmosphere</p>
+                <h2 class="text-4xl font-serif text-primary">店舗・内装</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-6xl mx-auto gsap-reveal">
+                <!-- Left Column (Large Image) -->
+                <div class="overflow-hidden rounded-lg group h-80 md:h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1974&auto=format&fit=crop"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                        alt="Main Dining - Chic Interior">
+                </div>
+                <!-- Right Column (Stacked 2 Images) -->
+                <div class="grid grid-rows-2 gap-4 h-80 md:h-[400px]">
+                    <div class="overflow-hidden rounded-lg group h-full">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                            alt="Elegant Table Setting">
+                    </div>
+                    <div class="overflow-hidden rounded-lg group h-full">
+                        <!-- Removed broken image, added a valid chic interior image -->
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=2070&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                            alt="Stylish Bar Area">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. Chef Section -->
+    <section id="chef" class="py-24 bg-white text-gray-900 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="gsap-reveal rounded-lg overflow-hidden h-[400px]">
+                    <img src="images/シェフ.png"
+                        class="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 transition duration-700"
+                        alt="Chef">
+                </div>
+                <div class="gsap-reveal flex flex-col justify-center">
+                    <p class="text-secondary text-xs tracking-widest uppercase mb-2">The Soul of</p>
+                    <h2 class="text-4xl md:text-5xl font-serif text-primary mb-4">L'anima della Cucina</h2>
+                    <p class="text-sm font-light text-gray-500 mb-8 italic">Chef Alessandro Ricci</p>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6 text-sm">
+                        「素材が語る声に耳を傾けること」。それが私の料理の原点です。<br><br>
+                        イタリアで培った伝統的な技法をベースにしながらも、日本の豊かな四季が織りなす繊細な素材の味を最大限に引き出すことを信条としています。<br><br>
+                        「隠れ家」という特別な空間で、お客様の心に刻まれるひとときをご提供できるよう、一皿一皿に情熱と真心を込めてお作りいたします。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Reservation Section -->
+    <section id="reservation" class="py-24 bg-background text-gray-900 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Left: Info & Candle Image -->
+                <div class="gsap-reveal flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-serif text-primary mb-2 tracking-widest">PRENOTAZIONE</h2>
+                        <p class="text-sm text-gray-600 mb-8">Reservation - 特別な日のご予約を承ります。</p>
+
+                        <div class="grid grid-cols-2 gap-6 text-sm font-light text-gray-700 mb-10">
+                            <div>
+                                <h4 class="text-secondary mb-2 font-serif text-sm">LUNCH (土日祝のみ)</h4>
+                                <p>11:30 - 15:00<br>(L.O. 14:00)</p>
+                            </div>
+                            <div>
+                                <h4 class="text-secondary mb-2 font-serif text-sm">DINNER</h4>
+                                <p>18:00 - 23:00<br>(L.O. 21:30)</p>
+                            </div>
+                            <div class="col-span-2 mt-2">
+                                <p><span class="text-primary font-serif text-sm">CLOSED:</span> 月曜日・第2火曜日</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Candle image -->
+                    <div class="h-48 overflow-hidden rounded-lg relative">
+                        <img src="images/A table awaits.png" class="w-full h-full object-cover" alt="A table awaits">
+                        <div
+                            class="absolute bottom-4 left-4 flex border border-white/40 px-3 py-1 bg-white/80 text-xs shadow-sm">
+                            <span class="text-secondary mr-2">✦</span> <span class="text-primary font-bold">Ristorante
+                                Azzurro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="gsap-reveal border border-gray-200 bg-white shadow-sm p-8 lg:p-10 relative">
+                    <h3
+                        class="font-serif text-2xl mb-8 border-b border-gray-200 pb-4 flex justify-between items-center text-primary">
+                        <span>Reserve a Table</span>
+                        <span
+                            class="text-secondary text-xs font-sans tracking-widest border border-secondary px-2 py-1">ONLINE</span>
+                    </h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1 uppercase">Date</label>
+                                <input type="date"
+                                    class="w-full bg-transparent border-b border-gray-300 text-gray-900 pb-1 focus:outline-none focus:border-secondary text-sm py-2">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1 uppercase">Time</label>
+                                <select
+                                    class="w-full bg-transparent border-b border-gray-300 text-gray-900 pb-1 focus:outline-none focus:border-secondary text-sm py-2 appearance-none">
+                                    <option>18:00</option>
+                                    <option>18:30</option>
+                                    <option>19:00</option>
+                                    <option>19:30</option>
+                                    <option>20:00</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1 uppercase">Guests</label>
+                                <select
+                                    class="w-full bg-transparent border-b border-gray-300 text-gray-900 pb-1 focus:outline-none focus:border-secondary text-sm py-2 appearance-none">
+                                    <option>2名</option>
+                                    <option>3名</option>
+                                    <option>4名</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1 uppercase">Name</label>
+                                <input type="text" placeholder="お名前"
+                                    class="w-full bg-transparent border-b border-gray-300 text-gray-900 pb-1 focus:outline-none focus:border-secondary text-sm py-2">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1 uppercase">Phone / Email</label>
+                                <input type="text" placeholder="連絡先"
+                                    class="w-full bg-transparent border-b border-gray-300 text-gray-900 pb-1 focus:outline-none focus:border-secondary text-sm py-2">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1 uppercase">Requests / Allergies</label>
+                            <input type="text" placeholder="ご要望・アレルギー等"
+                                class="w-full bg-transparent border-b border-gray-300 text-gray-900 pb-1 focus:outline-none focus:border-secondary text-sm py-2">
+                        </div>
+
+                        <div class="pt-6">
+                            <button type="button"
+                                class="w-full bg-secondary text-white font-bold tracking-wider py-4 hover:bg-opacity-90 transition duration-300 text-sm">
+                                空席を確認する / SEARCH
+                            </button>
+                            <p class="text-center text-[10px] text-gray-500 mt-4">当日のご予約はお電話にて直接お問い合わせください。</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Access & Contact -->
+    <section id="access" class="py-24 bg-white text-gray-900 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-5xl text-center mb-12 gsap-reveal">
+            <p class="text-secondary text-xs font-serif tracking-widest uppercase mb-2">Visit Us</p>
+            <h2 class="text-3xl md:text-4xl font-serif text-primary">Access & Contact</h2>
+        </div>
+
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="gsap-reveal flex flex-col space-y-10 pr-0 md:pr-8">
+                    <!-- ADDRESS -->
+                    <div class="flex items-start space-x-6">
+                        <div
+                            class="flex-shrink-0 w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-primary">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-secondary mb-2 font-serif uppercase tracking-widest text-lg font-bold">
+                                Address</p>
+                            <p class="text-gray-900 text-lg leading-relaxed mb-3 font-medium">
+                                〒107-0062<br>東京都港区南青山X-X-X<br>アズーロビル 地下1階
+                            </p>
+                            <p class="text-gray-500 text-sm">
+                                ○○駅から徒歩5分<br>
+                                △△駅から徒歩8分
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PHONE -->
+                    <div class="flex items-start space-x-6">
+                        <div
+                            class="flex-shrink-0 w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-primary">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-secondary mb-2 font-serif uppercase tracking-widest text-lg font-bold">Phone
+                            </p>
+                            <p class="text-gray-900 text-3xl font-serif tracking-wider mb-4">03-XXXX-XXXX</p>
+                            <a href="#"
+                                class="inline-block border border-gray-400 text-gray-600 px-6 py-2 text-sm tracking-widest uppercase hover:bg-gray-100 transition">
+                                Call for inquiries
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- BUSINESS HOURS -->
+                    <div class="flex items-start space-x-6">
+                        <div
+                            class="flex-shrink-0 w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-primary">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="w-full">
+                            <p class="text-secondary mb-2 font-serif uppercase tracking-widest text-lg font-bold">
+                                Business Hours</p>
+                            <div class="grid grid-cols-2 gap-4 mb-3">
+                                <div>
+                                    <p class="text-secondary text-sm mb-1">Lunch</p>
+                                    <p class="text-gray-900 text-xl font-light">11:30 - 15:00 <span
+                                            class="text-gray-500 text-sm">(L.O. 14:00)</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-secondary text-sm mb-1">Dinner</p>
+                                    <p class="text-gray-900 text-xl font-light">18:00 - 23:00 <span
+                                            class="text-gray-500 text-sm">(L.O. 21:30)</span></p>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-sm flex items-center">
+                                <span class="text-red-500 mr-2">●</span> 定休日: 毎週月曜日・第2火曜日
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEATING -->
+                    <div class="flex items-start space-x-6">
+                        <div
+                            class="flex-shrink-0 w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-primary">
+                            <!-- Couch/Seat Icon -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19 16v3a2 2 0 01-2 2H7a2 2 0 01-2-2v-3m14-8v8H5V8a2 2 0 012-2h10a2 2 0 012 2z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-secondary mb-2 font-serif uppercase tracking-widest text-lg font-bold">
+                                Seating</p>
+                            <p class="text-gray-900 text-xl font-light">40席 <span
+                                    class="text-gray-500 text-sm">（個室2室含む）</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gsap-reveal h-80 overflow-hidden rounded-lg shadow-sm border border-gray-200">
+                    <img src="images/Address.png"
+                        class="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 transition duration-500"
+                        alt="Map Address">
+                </div>
+            </div>
+
+            <!-- Default Footer inside Access Section -->
+            <div class="text-center text-gray-500 text-xs border-t border-gray-200 pt-8 mt-16 font-light">
+                &copy; <span id="year"></span> <a href="#header" class="text-primary font-bold">Ristorante Azzurro</a>.
+                All Rights Reserved.
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <!-- GSAP Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Initial Hero Animations
+        const heroTl = gsap.timeline();
+
+        heroTl.to("#hero-title", {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power3.out",
+            delay: 0.2
+        })
+            .to("#hero-subtitle", {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            }, "-=1.0")
+            .to("#hero-scroll", {
+                opacity: 1,
+                duration: 1
+            }, "-=0.5");
+
+        // Parallax effect for Hero Image
+        gsap.to("#hero-bg img", {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // 2. Header Style Change on Scroll
+        const header = document.getElementById('header');
+        const logo = document.getElementById('logo');
+        const navLinks = document.getElementById('nav-links');
+        const reserveBtn = document.getElementById('reserve-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('glass', 'py-4');
+                header.classList.remove('py-6');
+header.style.background = 'rgba(255, 255, 255, 0.9)'; 
+
+                logo.classList.replace('text-white', 'text-primary');
+                navLinks.classList.replace('text-white', 'text-primary');
+
+                reserveBtn.classList.replace('border-white', 'border-primary');
+                reserveBtn.classList.replace('text-white', 'text-primary');
+                reserveBtn.classList.replace('hover:bg-white', 'hover:bg-primary');
+                reserveBtn.classList.replace('hover:text-primary', 'hover:text-white');
+            } else {
+                header.classList.remove('glass', 'py-4');
+                header.classList.add('py-6');
+header.style.background = 'transparent';
+
+                logo.classList.replace('text-primary', 'text-white');
+                navLinks.classList.replace('text-primary', 'text-white');
+
+                reserveBtn.classList.replace('border-primary', 'border-white');
+                reserveBtn.classList.replace('text-primary', 'text-white');
+                reserveBtn.classList.replace('hover:bg-primary', 'hover:bg-white');
+                reserveBtn.classList.replace('hover:text-white', 'hover:text-primary');
+            }
+        });
+
+        // 3. Scroll Reveal Animations (Fade-in & Up)
+        const revealElements = document.querySelectorAll('.gsap-reveal');
+
+        revealElements.forEach((el) => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%", // Trigger when element is 85% down the viewport
+                    toggleActions: "play none none reverse" // Optional: allows reverse on scroll up
+                }
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <a href="index.html#/work/lp"" class="fixed bottom-6 right-6 z-50 bg-[#151E32] text-[#FFB300] border border-[#FFB300]/30 px-6 py-3 rounded-full shadow-lg hover:bg-[#FFB300] hover:text-[#0B1120] transition-all duration-300 flex items-center group">
+        <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span class="text-sm font-bold tracking-wider">ポートフォリオに戻る</span>
+    </a>
+    
+</body>
+
+</html>
