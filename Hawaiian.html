@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハワイアンロミロミ エステサロン 新規顧客向けLP</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+JP:wght@300;400;500;700;800&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Hawaiianstyles.css">
+    <!-- SVG Monstera Template for JS -->
+    <template id="monstera-template">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="monstera-svg">
+            <path d="M50 10 C30 10 10 30 15 50 C20 70 40 85 50 90 C60 85 80 70 85 50 C90 30 70 10 50 10 Z" fill="#2E8B57" opacity="0.1"/>
+            <path d="M30 40 C35 35 45 35 50 40 C45 45 35 45 30 40 Z" fill="none" stroke="#FFFFF0" stroke-width="2"/>
+            <path d="M70 40 C65 35 55 35 50 40 C55 45 65 45 70 40 Z" fill="none" stroke="#FFFFF0" stroke-width="2"/>
+            <path d="M25 60 C35 50 45 55 50 65 C40 60 30 65 25 60 Z" fill="none" stroke="#FFFFF0" stroke-width="2"/>
+            <path d="M75 60 C65 50 55 55 50 65 C60 60 70 65 75 60 Z" fill="none" stroke="#FFFFF0" stroke-width="2"/>
+        </svg>
+    </template>
+</head>
+<body>
+    <div id="parallax-container"></div>
+
+    <header id="header" class="section-container fluid">
+        <div class="header-inner row">
+            <div class="logo font-mincho">Aloha Healing</div>
+            <div class="header-info">
+                <p class="hours">10:00〜20:00 / 不定休</p>
+                <a href="tel:0000000000" class="phone">000-000-0000</a>
+                <a href="#reservation" class="btn-primary header-btn">Web予約</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero_view">
+        <div class="hero-image-wrap">
+            <img src="images/hero.png" alt="ハワイアンロミロミの施術風景" class="hero-img">
+            <div class="hero-badges">
+                <span class="badge">完全予約制</span>
+                <span class="badge">完全個室</span>
+                <span class="badge">女性専用</span>
+            </div>
+        </div>
+        <div class="hero-text-wrap fade-in-up">
+            <h1 class="hero-catchphrase font-mincho fade-in-up delay-100">
+                慢性的な疲れを根本改善する<br>
+                本場ハワイアンロミロミ専門サロン
+            </h1>
+            <p class="hero-subcopy fade-in-up delay-200">
+                朝のだるさが消えて、仕事終わりでも疲れが残らない体へ。<br>
+                【1日3名様限定】家事や仕事で頑張るあなただけの休息の聖域を。
+            </p>
+            <p class="hero-accent font-script fade-in-up delay-300">Healing Sanctuary</p>
+        </div>
+    </section>
+
+    <!-- 権威性・実績セクション -->
+    <section id="authority" class="section-container">
+        <div class="authority-box fade-in-up">
+            <div class="authority-number">
+                <h3 class="font-mincho gold">施術歴 10 年</h3>
+                <span class="divider"></span>
+                <h3 class="font-mincho gold">累計 5,000 人以上対応</h3>
+            </div>
+            <p class="authority-desc font-gothic">ハワイ現地で修行を積んだ熟練セラピストが、<br class="pc-br">あなたのその抜けない疲労に直接アプローチします。</p>
+        </div>
+    </section>
+
+    <!-- ターゲット共感セクション -->
+    <section id="problem_agitation" class="section-container">
+        <h2 class="section-title font-mincho fade-in-up">30〜40代の働く女性へ。<br class="sp-br">こんなお悩み、独りで抱えていませんか？</h2>
+        <ul class="problem-list">
+            <li class="fade-in-up delay-100">しっかり寝たはずなのに、朝から体が重くスッキリしない</li>
+            <li class="fade-in-up delay-200">仕事と家事の往復で、自分の体を癒やす余裕が一切ない</li>
+            <li class="fade-in-up delay-300">マッサージに行っても、その時だけで翌日には「元通り」の慢性疲労</li>
+            <li class="fade-in-up delay-400">周りの音を気にせず、誰にも気を遣わずにただ深く眠りたい</li>
+        </ul>
+        <p class="problem-message fade-in-up delay-200" style="text-wrap: balance;">
+            限界寸前のそのサイン、もう我慢しなくて大丈夫です。<br>
+            波のリズムで「芯の凝り」をほどき、明日を元気に迎える軽やかな体を取り戻しませんか。
+        </p>
+    </section>
+
+    <!-- ストーリー（想い）セクション -->
+    <section id="story" class="section-container bg-green white-text">
+        <div class="story-content">
+            <div class="story-img-wrap fade-in-up delay-100">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="セラピストの想い" class="story-img">
+            </div>
+            <div class="story-text fade-in-up delay-200">
+                <h2 class="story-title font-mincho">なぜこのサロンを開いたのか</h2>
+                <h3 class="story-subtitle font-mincho">「私も、激務で倒れるまで頑張り続けていました」</h3>
+                <p>私自身、以前は過酷な労働環境に身を置き、毎日のように肩こりと頭痛に悩まされながら我慢して働き続けていました。<br>ついに体調を崩し休職した時、ハワイで出会った「ロミロミ」が人生を変えてくれました。</p>
+                <p>ただのマッサージではなく、身体の深い層から緊張を解きほぐし、心まで優しく包み込むような感覚。「あの時の私のように、頑張りすぎて限界を迎えている女性を救いたい。」その想いから、一人ひとりに真剣に向き合える本場仕込みの専門サロンを立ち上げました。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴・ベネフィット -->
+    <section id="features_and_solutions" class="section-container">
+        <h2 class="section-title font-mincho fade-in-up">根本改善へと導く、当サロン3つのこだわり</h2>
+        <p class="limit-reason font-gothic fade-in-up delay-100 text-center" style="margin-bottom: 50px;">
+            一人ひとりのお身体と真剣に向き合い、一切妥協のない最高品質の施術を提供するため、<br class="pc-br"><strong class="gold" style="font-size:1.2rem;">1日3名様のみの完全予約制</strong> を徹底しております。
+        </p>
+
+        <div class="feature-items">
+            <!-- Feature 1 -->
+            <div class="feature-card fade-in-up">
+                <div class="feature-img-wrap">
+                    <img src="images/feature1.png" alt="深層デトックス" loading="lazy">
+                </div>
+                <div class="feature-content">
+                    <h3 class="font-mincho">1. 翌朝のスッキリ感が違う『深層デトックス』</h3>
+                    <p>体重を乗せた力強いストロークで血行とリンパの滞りを流します。表面を揉むだけでは届かない「芯」にアプローチするため、施術直後だけでなく翌朝の目覚めの良さと体の軽さに驚かれます。</p>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="feature-card reverse fade-in-up">
+                <div class="feature-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="完全個室でリセット" loading="lazy">
+                </div>
+                <div class="feature-content">
+                    <h3 class="font-mincho">2. 他人の目を気にしない『完全個室のサンクチュアリ』</h3>
+                    <p>都会の喧騒を遮断した自分だけのプライベート空間。他のお客様と顔を合わせることも、隣の会話が聞こえることもありません。鳥のさえずりと波の音の中で、ストレスを完全にリセットできます。</p>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="feature-card fade-in-up">
+                <div class="feature-img-wrap">
+                    <img src="images/feature3.png" alt="完全オーダーメイドアロマ" loading="lazy">
+                </div>
+                <div class="feature-content">
+                    <h3 class="font-mincho">3. 睡眠の質を根本から上げる『自律神経ケアアロマ』</h3>
+                    <p>その日のあなたの疲労度やメンタルに合わせて、30種の精油から最適な香りをブレンド。優しく脳に働きかけて自律神経の乱れを整え、夜中目覚めることのない「深く質の高い眠り」へと導きます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- レビュー拡充 -->
+    <section id="customer_reviews" class="section-container bg-ivory">
+        <h2 class="section-title font-mincho fade-in-up">施術後、翌朝の『体の軽さ』に驚く声が届いています</h2>
+        <div class="review-grid">
+            <div class="review-card fade-in-up delay-100">
+                <div class="review-text">
+                    <h4 class="review-title">「翌朝、目覚ましより前にスッキリ起きられました」</h4>
+                    <p><strong>【Before】</strong>毎日仕事終わりには肩が石のように硬く、夜も何度も目が覚めてしまっていました。<br><strong>【After】</strong>力強い圧なのに痛くなく、気づけば熟睡。翌日は嘘のように体が軽く、久しぶりに朝から活動的に動けました。</p>
+                    <span class="demographic">38歳・人事（デスクワーク）</span>
+                </div>
+            </div>
+            <div class="review-card fade-in-up delay-200">
+                <div class="review-text">
+                    <h4 class="review-title">「自分だけの隠れ家。絶対に外せない心と体の投資」</h4>
+                    <p><strong>【Before】</strong>育児とパートの両立で、自分を労わる時間はゼロ。<br><strong>【After】</strong>完全個室で誰にも気を遣わず、ひたすら癒やされます。強引な勧誘もないので安心。ここに来ることで、また笑顔で子どもと接することができます。</p>
+                    <span class="demographic">42歳・パート／2児の母</span>
+                </div>
+            </div>
+            <div class="review-card fade-in-up delay-100">
+                <div class="review-text">
+                    <h4 class="review-title">「長年のむくみが取れて、靴がゆるくなりました」</h4>
+                    <p><strong>【Before】</strong>立ち仕事で夕方には足がパンパン。重くて眠れない日もありました。<br><strong>【After】</strong>足先からしっかり老廃物が流されていくのが分かりました。帰りは履いてきたパンプスが緩く感じるほど！即効性に感動しています。</p>
+                    <span class="demographic">35歳・販売員</span>
+                </div>
+            </div>
+            <div class="review-card fade-in-up delay-200">
+                <div class="review-text">
+                    <h4 class="review-title">「マッサージ特有の“揉み返し”が一切ない！」</h4>
+                    <p><strong>【Before】</strong>強揉みが好きですが、いつも翌日は揉み返しで体が痛くなっていました。<br><strong>【After】</strong>ここは『面』でじっくり圧をかけてくれるからか、翌日の痛みが全く出ません。奥の凝りだけが綺麗に無くなった感覚です。</p>
+                    <span class="demographic">45歳・営業</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Q&Aで不安を徹底的に潰す -->
+    <section id="qa" class="section-container">
+        <h2 class="section-title font-mincho fade-in-up">初めてでも安心。<br class="sp-br">よくあるご質問にお答えします</h2>
+        <div class="accordion fade-in-up delay-100">
+            <details>
+                <summary>Q. 強引な回数券の勧誘などはされませんか？</summary>
+                <p>A. ご安心ください。当サロンでは、お客様が心からリラックスできる環境を第一に考えており、強引な勧誘や化粧品の押し売りなどは一切行なっておりません。</p>
+            </details>
+            <details>
+                <summary>Q. 痛みに弱いのですが、ロミロミは痛いですか？</summary>
+                <p>A. ロミロミは指の「点」ではなく、腕全体を使った「面」で圧をかけるため、筋肉を傷めにくく「痛気持ちいい」施術が特徴です。力加減は都度お伺いしながら進めますのでご遠慮なくお申し付けください。</p>
+            </details>
+            <details>
+                <summary>Q. 女性のスタッフに対応してもらえますか？</summary>
+                <p>A. はい、当サロンは「女性限定サロン」であり、施術経験が豊富な女性セラピストが担当いたします。安心してお任せください。</p>
+            </details>
+            <details>
+                <summary>Q. 着替えるものは持参する必要がありますか？</summary>
+                <p>A. お着替え（専用の紙ショーツやガウン）、術後のメイク直しのためのアメニティは全て無料でご用意しております。手ぶらでお気軽にお越しください。</p>
+            </details>
+            <details>
+                <summary>Q. 現金以外でも支払えますか？</summary>
+                <p>A. はい、VISA, MasterCard, JCBなどの各種クレジットカード・各種QR決済に完全対応しております。</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- 価格のアリバイと保証 -->
+    <section id="pricing_and_offer" class="section-container bg-green white-text">
+        <h2 class="section-title font-mincho fade-in-up">極上の癒やしを特別価格で。<br class="sp-br">【ご新規様・毎月先着10名様限定】</h2>
+        <p class="limit-note fade-in-up delay-100">※技術向上のための簡単なアンケートにご協力いただく「お試しモニター特別枠」となります。</p>
+        
+        <div class="menu-cards">
+            <div class="menu-card highlight fade-in-up delay-100">
+                <span class="menu-badge">人気No.1</span>
+                <h3 class="menu-name">全身たっぷりロミロミ（90分）</h3>
+                <p class="menu-desc">慢性的な疲労、足の重だるさ、首肩の詰まりを根本からリセット。「翌朝の爽快感」を一番実感できるコースです。</p>
+                <div class="price-wrap">
+                    <span class="regular-price">通常価格 15,000円</span>
+                    <span class="discount-price gold">11,980<span class="yen">円</span></span>
+                </div>
+                <p class="bonus gold">★ 今だけご自宅用ハワイアン・バスソルト進呈</p>
+            </div>
+            <div class="menu-card fade-in-up delay-200">
+                <h3 class="menu-name">全身ベーシックロミロミ（60分）</h3>
+                <p class="menu-desc">まずはハワイアンロミロミの心地よさを試してみたい方に。主要な疲れのポイントを効率よくケアします。</p>
+                <div class="price-wrap">
+                    <span class="regular-price">通常価格 10,000円</span>
+                    <span class="discount-price gold">7,980<span class="yen">円</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="guarantee-box fade-in-up delay-300">
+            <h4 class="font-mincho gold">【安心の全額返金保証】</h4>
+            <p>万が一、施術内容や対応に全くご満足いただけなかった場合は、当日のお申し出に限り全額返金いたします。私たちの技術に自信があるからこそのお約束です。</p>
+        </div>
+    </section>
+
+    <!-- CTA強化 -->
+    <section id="reservation_access" class="section-container">
+        <h2 class="section-title font-mincho fade-in-up">ご予約について</h2>
+        <p class="cta-text fade-in-up delay-100">先着10名様の特別枠はすぐに埋まってしまう可能性がございます。<br>限界を迎えているそのお身体、どうか我慢せず今すぐ私たちに預けてください。</p>
+        
+        <div id="reservation" class="reservation-box fade-in-up delay-200">
+            <a href="#" class="btn-primary large-btn cta-btn">
+                <span class="cta-main">今すぐ全身の疲れをリセットする</span>
+                <span class="cta-sub">（24時間受付・Web予約へ進む）</span>
+            </a>
+        </div>
+
+        <div class="access-info fade-in-up delay-300">
+            <div class="info-group">
+                <h4 class="font-mincho">Address</h4>
+                <p>〒000-0000<br>〇〇県〇〇市〇〇町1-2-3 〇〇ビル2F</p>
+                <p class="access-note">〇〇駅 徒歩5分（近隣にコインパーキングあり）</p>
+            </div>
+            <div class="info-group">
+                <h4 class="font-mincho">Phone</h4>
+                <p class="phone-large">000-000-0000</p>
+                <p class="access-note">営業時間：10:00〜20:00 / 不定休<br>※施術中は電話に出られない場合がございます</p>
+            </div>
+        </div>
+
+        <p class="accent-text font-script gold footer-script fade-in-up delay-400">Mahalo</p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Aloha Healing Salon. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Reservation Button -->
+    <div id="floating-btn-wrap">
+        <a href="#reservation" class="floating-btn cta-pulse">
+            <span class="small-text">今すぐ</span>予約
+        </a>
+    </div>
+
+    <script src="Hawaiianscript.js"></script>
+
+<a href="index.html#/work/insta" class="portfolio-back-btn">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    <span>ポートフォリオに戻る</span>
+</a>
+    
+</body>
+</html>

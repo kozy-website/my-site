@@ -418,7 +418,7 @@
             const skills = [
                 '広告バナー',
                 'WEB制作',
-                'インスタ投稿',
+                'ライディング制作',
                 'サムネイル',
                 '電子書籍',
                 'スライド作成'
@@ -524,7 +524,7 @@
                 },
                 {
                     id: 'insta',
-                    title: 'インスタ投稿',
+                    title: 'ライディング制作',
                     category: 'SNS',
                     image: 'インスタ投稿.png',
                 },
@@ -605,6 +605,17 @@
         // ============ CONTACT SECTION ============
         function ContactSection() {
             const [status, setStatus] = React.useState('');
+
+// ★追加：初期表示したいテンプレート文
+const defaultMessage = `参考画像・URL：
+ターゲット：
+ご希望カラー：
+実績としての掲載： OK ・ NG
+ご希望納期：
+ご希望の納品形式： (画像データ or Canvaデータ)
+その他ご相談事項：`;
+
+
 
             const handleSubmit = async (e) => {
                 e.preventDefault();
@@ -695,8 +706,9 @@
 
                         <div className="mb-6">
                           <label htmlFor="message" className="block text-sm font-semibold mb-2 text-gold-300">お問い合わせ内容</label>
-                          <textarea name="message" rows="6" required
-                            className="w-full px-4 py-3 bg-navy-800 border border-gray-700 rounded-lg text-white"></textarea>
+                          <textarea name="message" rows="10" required
+                            defaultValue={defaultMessage}
+                            className="w-full px-4 py-3 bg-navy-800 border border-gray-700 rounded-lg text-white focus:border-gold-300 outline-none transition-colors"></textarea>
                         </div>
 
                         <button 
@@ -771,13 +783,13 @@
                     nextWork: 'insta',
                 },
                 insta: {
-                    title: 'インスタ投稿',
+                    title: 'ライティング作成',
                     category: 'SNS',
-                    description: 'Instagram向けの投稿デザイン。視覚的な統一感を持った設計。',
+                    description: 'ライティングページ用デザイン。視覚的に見栄えを重視した設計。',
                     tools: [],
                     images: [
-                        'インスタ投稿.png',
-                        '1Insta.png',
+                        'ライティング.png',
+                        { src: 'hawaiian_image_1.png', link: 'Hawaiian.html' },                        
                         '2Insta.png',
                     ],
                     nextWork: 'thumbnail',
